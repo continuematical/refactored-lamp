@@ -5,9 +5,12 @@ import com.example.demo.Bean.User;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
+//允许绑定某一个类的属性
+@EnableConfigurationProperties(User.class)
 //组建的名字默认是全命名
 @Import(com.alibaba.druid.FastsqlException.class)
 //这是配置类，替代以前的配置文件，本身也是容器中的组件

@@ -1,5 +1,8 @@
 package com.example.demo.Bean;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties(prefix = "user")
 public class User {
     private long id;
     private String name;

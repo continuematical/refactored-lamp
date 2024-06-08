@@ -1,18 +1,20 @@
 package com.example.demo.Bean;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-@ConfigurationProperties(prefix = "cat")
-public class Cat {
-    private long id;
+@ConfigurationProperties(prefix = "dog")
+@Component
+public class Dog {
+    private int age;
     private String name;
 
-    public long getId() {
-        return id;
+    public int getAge() {
+        return age;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getName() {
