@@ -24,3 +24,18 @@ spring:
     hikari:
       max-lifetime: 60000
       maximum-pool-size: 1000
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  servlet:
+    multipart:
+      max-file-size: 10240MB
+      max-request-size: 10240MB
+
+  jackson:
+    time-zone: GMT+8
+    serialization:
+      fail-on-empty-beans: false
