@@ -17,7 +17,7 @@ public class CaptchaProperties {
     private static final Long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "需要图片验证码的接口")
-    private List<String> verfication = new ArrayList<>();
+    private List<String> verification = new ArrayList<>();
 
     @ApiModelProperty(value = "需要七位验证码验证的接口")
     private List<String> wechat = new ArrayList<>();

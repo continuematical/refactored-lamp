@@ -39,3 +39,13 @@ spring:
     time-zone: GMT+8
     serialization:
       fail-on-empty-beans: false
+
+# ???????
+intercept:
+  verification:
+    - /demo/login
+    - /demo/user/regist
+  wechat:
+    - /demo/user/smsLogin
+    - /demo/user/resetByMobile
+    - /demo/user/changeMobile
