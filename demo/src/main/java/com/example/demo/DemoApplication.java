@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.Bean.Cat;
+import com.example.demo.Bean.Dog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -14,5 +16,13 @@ public class DemoApplication {
 //        for (String name : names) {
 //            System.out.println(name);
 //        }
+        Cat cat = run.getBean(Cat.class);
+        System.out.println(cat);
+
+        Dog dog = run.getBean(Dog.class);
+        System.out.println(dog);
+
+        Object user = run.getBean("userData");
+        System.out.println(user);
     }
 }

@@ -9,7 +9,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
-//允许绑定某一个类的属性
+//属性值绑定 第三种方法
+//1. 开启组件的自动绑定；2. 默认将组件装在自己容器里；3. 导入第三方组件进行属性绑定
 @EnableConfigurationProperties(User.class)
 //组建的名字默认是全命名
 @Import(com.alibaba.druid.FastsqlException.class)
@@ -19,11 +20,7 @@ public class AppConfig {
     //可以修改方法名
     @Bean("userData")
     public User getUser() {
-        User user = new User();
-        user.setId(1L);
-        user.setAge(10);
-        user.setName("张三");
-        return user;
+        return new User();
     }
 
     //条件注解
