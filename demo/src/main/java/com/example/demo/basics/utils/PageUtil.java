@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.example.demo.basics.baseVo.PageVo;
 import com.example.demo.basics.exceptions.MyException;
 import com.example.demo.data.utils.NullUtils;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@ApiOperation(value = "分页工具类")
+@Tag(name = "分页工具类")
 public class PageUtil {
 
     private final static String[] NO_CAN_USE_WORDS
@@ -29,7 +29,7 @@ public class PageUtil {
 
     private static final String NULL_STR = "";
 
-    @ApiModelProperty(value = "JPA分页方法")
+    @Schema(name = "JPA分页方法")
     public static Pageable initPage(PageVo page) {
         Pageable able = null;
         int pageNumber = page.getPageNumber();
@@ -53,7 +53,7 @@ public class PageUtil {
     }
 
 
-    @ApiModelProperty(value = "MybatisPlus分页法")
+    @Schema(name = "MybatisPlus分页法")
     public static Page initMyPage(PageVo page) {
         Page newPage = null;
         int pageNumber = page.getPageNumber();
@@ -85,7 +85,7 @@ public class PageUtil {
         return newPage;
     }
 
-    @ApiModelProperty(value = "防止Mybatis Plus的注入攻击")
+    @Schema(name = "防止Mybatis Plus的注入攻击")
     public static void SQLInject(String sqlStr) {
         if (NullUtils.isNull(sqlStr)) {
             return;
@@ -98,7 +98,7 @@ public class PageUtil {
         }
     }
 
-    @ApiModelProperty(value = "自定义分页方法")
+    @Schema(name = "自定义分页方法")
     public static List listPage(PageVo page, List list) {
         int pageNumber = page.getPageNumber() - 1;
         int pageSize = page.getPageSize();
@@ -119,7 +119,7 @@ public class PageUtil {
         }
     }
 
-    @ApiModelProperty(value = "驼峰转下划线")
+    @Schema(name = "驼峰转下划线")
     public static String camelToUnderline(String param) {
         if (NullUtils.isNull(param)) {
             return NULL_STR;

@@ -1,8 +1,8 @@
 package com.example.demo.basics.utils;
 
 import com.example.demo.basics.baseVo.Result;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ResultUtil<T> {
     private Result<T> result;
@@ -18,14 +18,14 @@ public class ResultUtil<T> {
         result.setCode(200);
     }
 
-    @ApiModelProperty(value = "成功返回数据")
+    @Operation(summary = "成功返回数据")
     public Result<T> setData(T t) {
         this.result.setResult(t);
         this.result.setCode(200);
         return this.result;
     }
 
-    @ApiOperation(value = "成功返回数据和备注")
+    @Operation(summary = "成功返回数据和备注")
     public Result<T> setDataAndMessage(T t, String msg) {
         this.result.setResult(t);
         this.result.setCode(200);
@@ -33,7 +33,7 @@ public class ResultUtil<T> {
         return this.result;
     }
 
-    @ApiOperation(value = "成功返回备注")
+    @Operation(summary = "成功返回备注")
     public Result<T> setSuccessMsg(String msg) {
         this.result.setCode(200);
         this.result.setSuccess(true);
@@ -42,7 +42,7 @@ public class ResultUtil<T> {
         return this.result;
     }
 
-    @ApiModelProperty(value = "成功返回数据和备注")
+    @Schema(name = "成功返回数据和备注")
     public Result<T> setData(T t, String msg) {
         this.result.setResult(t);
         this.result.setCode(200);
@@ -50,7 +50,7 @@ public class ResultUtil<T> {
         return this.result;
     }
 
-    @ApiOperation(value = "错误返回备注")
+    @Operation(summary ="错误返回备注")
     public Result<T> setErrorMsg(String msg) {
         this.result.setCode(500);
         this.result.setSuccess(false);
@@ -58,7 +58,7 @@ public class ResultUtil<T> {
         return this.result;
     }
 
-    @ApiOperation(value = "错误返回状态码和备注")
+    @Operation(summary = "错误返回状态码和备注")
     public Result<T> setErrorMsg(Integer code, String msg) {
         this.result.setCode(code);
         this.result.setSuccess(false);

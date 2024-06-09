@@ -1,20 +1,20 @@
 package com.example.demo.data.vo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Api(tags = "缓存VO类")
+@Tag(name = "缓存VO类")
 @Data
 @AllArgsConstructor
 public class RedisVO {
-    @ApiModelProperty(value = "Redis键")
+    @Schema(name = "Redis键")
     private String key;
 
-    @ApiModelProperty(value = "Redis值")
+    @Schema(name = "Redis值")
     private String value;
 
-    @ApiModelProperty(value = "保存秒数")
+    @Schema(name = "保存秒数")
     private Long expireTime;
 }

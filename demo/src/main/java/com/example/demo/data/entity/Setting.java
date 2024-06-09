@@ -2,8 +2,7 @@ package com.example.demo.data.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.demo.basics.baseclass.BaseEntity;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -18,12 +17,12 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicUpdate
 @Table(name = "a_setting")
 @TableName("a_setting")
-@ApiModel(value = "配置")
+@Schema(name = "配置")
 @NoArgsConstructor
 public class Setting extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "设置内容")
+    @Schema(name = "设置内容")
     private String value;
 
     public Setting(String id){

@@ -1,63 +1,64 @@
 package com.example.demo.basics.baseclass;
 
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
 import java.util.List;
 
-@ApiOperation(value = "模板服务层")
+@Tag(name = "模板服务层")
 @FunctionalInterface
 public interface BaseService<E, ID extends Serializable> {
     BaseDao<E, ID> getRepository();
 
-    @ApiOperation(value = "查询")
+    @Operation(summary = "查询")
     default E get(ID id) {
         return getRepository().findById(id).orElse(null);
     }
 
-    @ApiOperation(value = "查询")
+    @Operation(summary = "查询")
     default List<E> getAll(){
         return getRepository().findAll();
     }
 
-    @ApiOperation(value = "查询")
+    @Operation(summary = "查询")
     default Page<E> findAll(Pageable pageable) {
         return getRepository().findAll(pageable);
     }
 
-    @ApiOperation(value = "新增")
+    @Operation(summary = "新增")
     default E save(E entity) {
         return getRepository().save(entity);
     }
 
-    @ApiOperation(value = "编辑")
+    @Operation(summary = "编辑")
     default E update(E entity) {
         return getRepository().saveAndFlush(entity);
     }
 
-    @ApiOperation(value = "批量保存")
+    @Operation(summary = "批量保存")
     default Iterable<E> saveOrUpdateAll(Iterable<E> entities) {
         return getRepository().saveAllAndFlush(entities);
     }
 
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     default void delete(E entity) {
         getRepository().delete(entity);
     }
 
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     default void delete(ID id) {
         getRepository().deleteById(id);
     }
 
-    @ApiOperation(value = "删除")
+    @Operation(summary = "删除")
     default void delete(Iterable<E> entities) {
         getRepository().deleteAllInBatch(entities);
     }
 
-    @ApiOperation(value = "计数")
+    @Operation(summary = "计数")
     default Long count(){
         return getRepository().count();
     }

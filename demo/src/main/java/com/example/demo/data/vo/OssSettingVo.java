@@ -1,23 +1,23 @@
 package com.example.demo.data.vo;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Api(tags = "文件存储配置VO类")
+@Tag(name = "文件存储配置VO类")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class OssSettingVo {
 
-    @ApiModelProperty(value = "访问")
+    @Schema(name = "访问")
     private String fileView;
 
-    @ApiModelProperty(value = "http")
+    @Schema(name = "http")
     private String fileHttp;
 
-    @ApiModelProperty(value = "路径")
+    @Schema(name = "路径")
     private String filePath;
 }

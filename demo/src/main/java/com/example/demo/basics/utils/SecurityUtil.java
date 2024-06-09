@@ -15,8 +15,8 @@ import com.example.demo.data.service.IUserService;
 import com.example.demo.data.utils.NullUtils;
 import com.example.demo.data.vo.PermissionDTO;
 import com.example.demo.data.vo.RoleDTO;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,7 +30,7 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-@ApiOperation(value = "鉴权工具类")
+@Tag(name = "鉴权工具类")
 @Component
 public class SecurityUtil {
 
@@ -68,7 +68,7 @@ public class SecurityUtil {
         List<RoleDTO> roleDTOS = new ArrayList<>();
 
         for (Role role : roles) {
-            roleDTOS.add(new RoleDTO(role.getName(), role.getId(), role.getDescription());
+            roleDTOS.add(new RoleDTO(role.getName(), role.getId(), role.getDescription()));
         }
         user.setRoles(roleDTOS);
 
@@ -87,7 +87,7 @@ public class SecurityUtil {
         return user;
     }
 
-    @ApiOperation(value = "获取新的用户token")
+    @Tag(name = "获取新的用户token")
     public String getToken(String username, Boolean saveLogin) {
         if (NullUtils.isNull(username)) {
             throw new MyException("username不能为空");
@@ -112,7 +112,7 @@ public class SecurityUtil {
             }
         }
         String ansUserToken = UUID.randomUUID().toString().replace(TOKEN_REPLACE_FRONT_STR, TOKEN_REPLACE_BACK_STR);
-        TokenUser tokenUser = new TokenUser(selectUser.getUsername(), permissionTitleList, saved)
+        TokenUser tokenUser = new TokenUser(selectUser.getUsername(), permissionTitleList, saved);
         /**
          * 单点登录删除旧Token
          */
@@ -135,7 +135,7 @@ public class SecurityUtil {
         return ansUserToken;
     }
 
-    @ApiOperation(value = "查询指定的用户的权限列表")
+    @Tag(name = "查询指定的用户的权限列表")
     public List<GrantedAuthority> getCurrUserPerms(String username) {
         List<GrantedAuthority> ans = new ArrayList<>();
         User selectUser = selectByUsrName(username);
@@ -152,7 +152,7 @@ public class SecurityUtil {
         return ans;
     }
 
-    @ApiModelProperty(value = "查询当前Token的用户对象")
+    @Operation(summary = "查询当前Token的用户对象")
     public User getCurrUser() {
         Object selectUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (Objects.equals("anonymousUser", selectUser.toString())) {

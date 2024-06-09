@@ -1,12 +1,13 @@
 package com.example.demo.basics.log;
 
-import io.swagger.annotations.ApiModel;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 /**
  * 日志枚举类
  */
 
-@ApiModel(value = "日志枚举类")
+@Schema(name = "日志枚举类")
 public enum LogType {
     /**
      * 默认

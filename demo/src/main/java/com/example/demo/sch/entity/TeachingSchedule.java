@@ -2,13 +2,13 @@ package com.example.demo.sch.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.example.demo.basics.baseclass.BaseEntity;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 
 @Data
 @Entity
@@ -16,25 +16,25 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicUpdate
 @Table(name = "a_teaching_schedule")
 @TableName("a_teaching_schedule")
-@ApiModel
+@Schema
 public class TeachingSchedule extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "名称")
+    @Schema(name = "名称")
     private String title;
 
-    @ApiModelProperty(value = "X坐标")
+    @Schema(name = "X坐标")
     private Integer x;
 
-    @ApiModelProperty(value = "Y坐标")
+    @Schema(name = "Y坐标")
     private Integer y;
 
-    @ApiModelProperty(value = "课程ID")
+    @Schema(name = "课程ID")
     private String curID;
 
-    @ApiModelProperty(value = "课程名称")
+    @Schema(name = "课程名称")
     private String curName;
 
-    @ApiModelProperty(value = "教师姓名")
+    @Schema(name = "教师姓名")
     private String teacherName;
 }

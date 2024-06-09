@@ -1,8 +1,8 @@
 package com.example.demo.data.vo;
 
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Api(tags = "用户菜单权限类")
+@Tag(name = "用户菜单权限类")
 public class UserByPermissionVo {
     private String userId;
     private String userName;

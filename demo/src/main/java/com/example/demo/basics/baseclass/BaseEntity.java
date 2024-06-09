@@ -5,8 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -22,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
 
-@ApiOperation(value = "模板实体类")
+@Tag(name = "模板实体类")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,25 +33,25 @@ import java.util.Date;
 public abstract class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "ID")
+    @Schema(name = "ID")
     @Id
     @TableId
     private String id;
 
     @LastModifiedBy
     @TableField(fill = FieldFill.UPDATE)
-    @ApiModelProperty(value = "最后更新人")
+    @Schema(name = "最后更新人")
     private String updateBy;
 
     @LastModifiedDate
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.UPDATE)
-    @ApiModelProperty(value = "更新时间")
+    @Schema(name = "更新时间")
     private Date updateTime;
 
     @CreatedBy
-    @ApiModelProperty(value = "创建者")
+    @Schema(name = "创建者")
     @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
@@ -58,9 +59,9 @@ public abstract class BaseEntity implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT)
-    @ApiModelProperty(value = "创建时间")
+    @Schema(name = "创建时间")
     private Date createTime;
 
-    @ApiModelProperty(value = "逻辑删除")
+    @Schema(name = "逻辑删除")
     private int delFlag;
 }
