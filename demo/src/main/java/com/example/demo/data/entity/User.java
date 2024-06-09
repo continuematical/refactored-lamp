@@ -6,12 +6,12 @@ import com.example.demo.basics.parameter.CommonConstant;
 import com.example.demo.data.vo.PermissionDTO;
 import com.example.demo.data.vo.RoleDTO;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.persistence.Column;
+import jakarta.persistence.Transient;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
-import javax.persistence.Column;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 public class User extends BaseEntity {
