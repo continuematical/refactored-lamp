@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
@@ -27,7 +28,7 @@ public class RedisExceptionThrowsConfig extends CachingConfigurerSupport {
     private Integer time = 30;
 
     @Override
-    @Tag(name = "Redis序列化异常")
+    @Operation(summary = "Redis序列化异常")
     public CacheErrorHandler errorHandler() {
         CacheErrorHandler cacheErrorHandler = new CacheErrorHandler() {
 
@@ -59,7 +60,7 @@ public class RedisExceptionThrowsConfig extends CachingConfigurerSupport {
     }
 
     @Bean
-    @Tag(name = "Redis序列化")
+    @Operation(summary = "Redis序列化")
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();
         Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
