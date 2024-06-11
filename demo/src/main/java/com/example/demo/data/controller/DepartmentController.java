@@ -17,28 +17,37 @@ import com.example.demo.data.service.IDepartmentService;
 import com.example.demo.data.service.IUserService;
 import com.example.demo.data.utils.NullUtils;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @RestController
 @Tag(name = "部门管理接口")
 @RequestMapping("/department")
+@Transactional
 public class DepartmentController {
     private SecurityUtil securityUtil;
 
     private RedisTemplateHelper redisTemplateHelper;
 
+    @Autowired
     private IDepartmentService iDepartmentService;
 
     private IUserService iUserService;
 
+    @Autowired
     private IDepartmentHeaderService iDepartmentHeaderService;
 
     //常量
@@ -92,10 +101,10 @@ public class DepartmentController {
         return "%" + str + "%";
     }
 
-    @RequestMapping("/getByParentId")
+    @RequestMapping(value = "/getByParentId", method = RequestMethod.GET)
     @SystemLog(about = "查询子部门", type = LogType.DATA_CENTER, dotype = "DEP-01")
-    @Operation(summary = "查询子部门")
-    public Result<List<Department>> getByParentId(@RequestParam String parentId) {
+    @Operation(summary = "查询子部门", method = "GET")
+    public Result<List<Department>> getByParentId(@Parameter String parentId) {
         List<Department> list = null;
         User nowUser = securityUtil.getCurrUser();
         String key = REDIS_DEPARTMENT_PRE_STR + parentId + REDIS_STEP_STR + nowUser.getId();
@@ -112,10 +121,35 @@ public class DepartmentController {
         return new ResultUtil<List<Department>>().setData(list);
     }
 
-//    @RequestMapping("/search")
-//    @SystemLog(about = "查询模糊部门", type = LogType.DATA_CENTER, dotype = "DEP-02")
-//    @Tag(name = "查询模糊部门")
-//    public Result<List<Department>> search(@RequestParam String title) {
-//
-//    }
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @SystemLog(about = "模糊搜索部门", type = LogType.DATA_CENTER, dotype = "DEP-02")
+    @Operation(summary = "模糊搜索部门")
+    public Result<List<Department>> search(@RequestParam String title) {
+        QueryWrapper<Department> depQw = new QueryWrapper<>();
+        depQw.like("title", title);
+        depQw.orderByDesc("sort_order");
+        List<Department> departmentList = iDepartmentService.list(depQw);
+        for (Department department : departmentList) {
+            System.out.println(department);
+        }
+        return new ResultUtil<List<Department>>().setData(setInfo(departmentList));
+    }
+
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @SystemLog(about = "添加部门", type = LogType.DATA_CENTER, dotype = "DEP-03")
+    @Operation(summary = "添加部门")
+    public Result<Object> add(Department department) {
+        iDepartmentService.saveOrUpdate(department);
+        if (!Objects.equals(CommonConstant.PARENT_ID, department.getParentId())) {
+            Department parentDepartment = iDepartmentService.getById(department.getParentId());
+            if (parentDepartment.getIsParent() == null || !parentDepartment.getIsParent()) {
+                parentDepartment.setIsParent(true);
+                iDepartmentService.saveOrUpdate(parentDepartment);
+            }
+        }
+        Set<String> keyListInSet = redisTemplateHelper.keys(REDIS_DEPARTMENT_PRE_STR + "*");
+        redisTemplateHelper.delete(keyListInSet);
+        return ResultUtil.success();
+    }
 }
