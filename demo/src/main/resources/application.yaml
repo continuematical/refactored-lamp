@@ -80,3 +80,11 @@ intercept:
     - /demo/user/smsLogin
     - /demo/user/resetByMobile
     - /demo/user/changeMobile
+
+# 自定义接口文档配置
+springdoc:
+  api-docs:
+    enabled: true # 是否开启文档功能
+    path: /api_docs # 后端请求地址
+  swagger-ui:
+    path: /doc  #自定义swagger前端请求路径，输入http：127.0.0.1:8081/doc会自动重定向到swagger页面
