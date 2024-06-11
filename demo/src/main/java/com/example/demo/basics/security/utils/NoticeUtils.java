@@ -1,6 +1,7 @@
 package com.example.demo.basics.security.utils;
 
 import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -173,6 +174,14 @@ public class NoticeUtils {
         tuwenList.add(new WeChatNoticeTuWenItemValue(title, description, url, picUrl));
         WeChatNoticeTuWen file = new WeChatNoticeTuWen(userId, "news", "1000002", new WeChatNoticeTuWenItem(tuwenList), 0, 1);
         String json = JSON.toJSONString(file);
-
+        String s = WeChatUtils.httpsRequest(BASE_URL + token, "POST", json);
+        JSONObject ans1 = JSONObject.parseObject(s);
+        String errcode = ans1.getString("errcode");
+        if(errcode.equals("0")){
+            return ans1.getString("msgid");
+        } else if(errcode.equals("81013")) {
+            return USER_ID_ERR;
+        }
+        return "FAIL";
     }
 }
