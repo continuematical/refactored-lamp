@@ -9,6 +9,7 @@ server:
       min-spare: 30
     max-swallow-size: -1
   shutdown: graceful
+
 spring:
   # 配置MySQL连接
   datasource:
@@ -74,12 +75,12 @@ logging:
 # 验证码配置
 intercept:
   verification:
-    - /demo/login
-    - /demo/user/regist
+    - /login
+    - /user/register
   wechat:
-    - /demo/user/smsLogin
-    - /demo/user/resetByMobile
-    - /demo/user/changeMobile
+    - /user/smsLogin
+    - /user/resetByMobile
+    - /user/changeMobile
 
 # 自定义接口文档配置
 springdoc:
