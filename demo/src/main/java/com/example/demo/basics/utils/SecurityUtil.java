@@ -40,10 +40,13 @@ public class SecurityUtil {
     @Autowired
     private RedisTemplateHelper redisTemplateHelper;
 
+    @Autowired
     private IUserService iUserService;
 
+    @Autowired
     private IPermissionService iPermissionService;
 
+    @Autowired
     private IRoleService iRoleService;
 
     private static final String TOKEN_REPLACE_FRONT_STR = "-";

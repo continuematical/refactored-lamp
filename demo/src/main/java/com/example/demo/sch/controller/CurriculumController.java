@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "课程管理接口")
-@RequestMapping("/curriculum")
+@RequestMapping("/zhou/curriculum")
 @RestController()
 public class CurriculumController {
 

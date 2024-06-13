@@ -25,7 +25,7 @@ public class Client {
 /**
  *  负责客户端的读和写，以及登录和发送的监听
  */
-class ClientReadAndPrint extends Thread{
+class ClientUtil extends Thread{
     static Socket mySocket = null;
     static JTextField textInput;
     static JTextArea textShow;
@@ -79,7 +79,7 @@ class ClientReadAndPrint extends Thread{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                ClientReadAndPrint readAndPrint = new ClientReadAndPrint();
+                ClientUtil readAndPrint = new ClientUtil();
                 readAndPrint.start();
             }
             else {

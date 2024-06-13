@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @Tag(name = "部门管理接口")
-@RequestMapping("/department")
+@RequestMapping("/zhou/department")
 @Transactional
 public class DepartmentController {
     private SecurityUtil securityUtil;

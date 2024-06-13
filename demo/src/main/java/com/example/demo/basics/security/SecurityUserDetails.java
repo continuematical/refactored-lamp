@@ -1,11 +1,11 @@
-package cn.zwz.basics.security;
+package com.example.demo.basics.security;
 
-import cn.zwz.basics.parameter.CommonConstant;
-import cn.zwz.data.entity.User;
-import cn.zwz.data.utils.ZwzNullUtils;
-import cn.zwz.data.vo.PermissionDTO;
-import cn.zwz.data.vo.RoleDTO;
-import io.swagger.annotations.ApiOperation;
+import com.example.demo.data.entity.User;
+import com.example.demo.data.utils.NullUtils;
+import com.example.demo.data.vo.PermissionDTO;
+import com.example.demo.data.vo.RoleDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,13 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
-/**
- * @author 郑为中
- * CSDN: Designer 小郑
- */
-@ApiOperation(value = "查询用户的角色和菜单权限")
+@Tag(name = "查询用户的角色和菜单权限")
 public class SecurityUserDetails extends User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
@@ -29,13 +24,13 @@ public class SecurityUserDetails extends User implements UserDetails {
     private List<PermissionDTO> permissions;
 
     @Override
-    @ApiOperation(value = "查询用户的角色和菜单权限")
+    @Operation(summary = "查询用户的角色和菜单权限")
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
         // 菜单权限
         if(permissions!=null && permissions.size() > 0){
             for (PermissionDTO dto : permissions) {
-                if(!ZwzNullUtils.isNull(dto.getTitle()) && !ZwzNullUtils.isNull(dto.getPath())) {
+                if(!NullUtils.isNull(dto.getTitle()) && !NullUtils.isNull(dto.getPath())) {
                     grantedAuthorityList.add(new SimpleGrantedAuthority(dto.getTitle()));
                 }
             }
@@ -43,7 +38,7 @@ public class SecurityUserDetails extends User implements UserDetails {
         // 角色
         if(roles != null && roles.size() > 0){
             roles.forEach(role -> {
-                if(!ZwzNullUtils.isNull(role.getName())){
+                if(!NullUtils.isNull(role.getName())){
                     grantedAuthorityList.add(new SimpleGrantedAuthority(role.getName()));
                 }
             });
@@ -52,27 +47,29 @@ public class SecurityUserDetails extends User implements UserDetails {
     }
 
     @Override
-    @ApiOperation(value = "账号是否启用")
+    @Operation(summary = "账号是否启用")
     public boolean isEnabled() {
-        return Objects.equals(CommonConstant.USER_STATUS_NORMAL,this.getStatus());
+        return true;
+                //Objects.equals(CommonConstant.USER_STATUS_NORMAL,this.getStatus());
     }
 
-    @ApiOperation(value = "账号是否过期")
+    @Operation(summary = "账号是否过期")
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    @ApiOperation(value = "账号密码是否过期")
+    @Operation(summary = "账号密码是否过期")
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    @ApiOperation(value = "账号是否禁用")
+    @Operation(summary = "账号是否禁用")
     public boolean isAccountNonLocked() {
-        return !Objects.equals(CommonConstant.USER_STATUS_LOCK, this.getStatus());
+        return true;
+        //!Objects.equals(CommonConstant.USER_STATUS_LOCK, this.getStatus());
     }
 
     /**

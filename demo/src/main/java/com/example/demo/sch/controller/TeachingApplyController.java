@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @Tag(name = "排课申请管理接口")
-@RequestMapping("/teachingApply")
+@RequestMapping("/zhou/teachingApply")
 @RestController
 @Transactional
 public class TeachingApplyController {

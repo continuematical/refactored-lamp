@@ -9,7 +9,7 @@ public class ClientView {
     String userName;  //由客户端登录时设置
     JTextField text;
     JTextArea textArea;
-    ClientReadAndPrint.ChatViewListen listener;
+    ClientUtil.ChatViewListen listener;
 
     // 构造函数
     public ClientView(String userName) {
@@ -37,7 +37,7 @@ public class ClientView {
         jp.add(button);
 
         // 设置“发送”监听
-        listener = new ClientReadAndPrint().new ChatViewListen();
+        listener = new ClientUtil().new ChatViewListen();
         listener.setJTextField(text);
         listener.setJTextArea(textArea);
         listener.setChatViewJf(jf);

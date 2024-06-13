@@ -27,7 +27,7 @@ import java.util.Objects;
 @RestController()
 @Tag(name = "教师管理接口")
 @Transactional
-@RequestMapping("/teacher")
+@RequestMapping("/zhou/teacher")
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;

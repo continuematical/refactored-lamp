@@ -1,4 +1,4 @@
-package com.example.demo.data.Impl;
+package com.example.demo.data.serviceImpl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.data.dao.mapper.DepartmentMapper;

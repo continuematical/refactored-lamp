@@ -22,7 +22,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/zhou/student")
 @Transactional
 @Tag(name = "学生管理接口")
 public class StudentController {

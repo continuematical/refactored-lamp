@@ -8,7 +8,7 @@ import lombok.Data;
 @Tag(name = "缓存VO类")
 @Data
 @AllArgsConstructor
-public class RedisVO {
+public class RedisVo {
     @Schema(name = "Redis键")
     private String key;
 

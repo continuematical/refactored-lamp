@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @Tag(name = "排课管理接口")
-@RequestMapping("/teachingSchedule")
+@RequestMapping("/zhou/teachingSchedule")
 @Transactional
 public class TeachingScheduleController {
 

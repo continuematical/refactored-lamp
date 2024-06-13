@@ -8,7 +8,7 @@ import java.awt.*;
 public class Login {
     JTextField textField = null;
     JPasswordField pwdField = null;
-    ClientReadAndPrint.LoginListen listener=null;
+    ClientUtil.LoginListen listener=null;
 
     public Login() {
         init();
@@ -29,21 +29,19 @@ public class Login {
         textField = new JTextField(20);
         JLabel pwdJLabel = new JLabel("密码：    ");
         pwdField = new JPasswordField(20);
-        JButton loginButton = new JButton("登录");
-        JButton registerButton = new JButton("注册");
+        JButton loginButton = new JButton("     登录      ");
         jp2.add(nameJLabel);
         jp2.add(textField);
         jp2.add(pwdJLabel);
         jp2.add(pwdField);
         jp2.add(loginButton);
-        jp2.add(registerButton);
 
         JPanel jp = new JPanel(new BorderLayout());  // BorderLayout布局
         jp.add(jp1, BorderLayout.NORTH);
         jp.add(jp2, BorderLayout.CENTER);
 
         // 设置监控
-        listener = new ClientReadAndPrint().new LoginListen();
+        listener = new ClientUtil().new LoginListen();
         listener.setJTextField(textField);
         listener.setJPasswordField(pwdField);
         listener.setJFrame(jf);

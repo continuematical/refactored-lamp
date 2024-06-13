@@ -2,6 +2,7 @@ package com.example.demo.basics.redis;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -16,6 +17,8 @@ import java.util.function.Consumer;
 @Tag(name = "Redis工具类")
 @Component
 public class RedisTemplateHelper {
+
+    @Autowired
     private StringRedisTemplate redisTemplate;
 
     @Operation(summary = "scan实现")

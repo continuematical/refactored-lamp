@@ -32,8 +32,8 @@ public class Server {
 
 
 class ServerUtil extends Thread {
-    Socket nowSocket = null;
-    ServerView serverView = null;
+    Socket nowSocket;
+    ServerView serverView;
     BufferedReader in = null;
     PrintWriter out = null;
 
@@ -50,7 +50,7 @@ class ServerUtil extends Thread {
                 for (Socket socket : Server.list) {
                     out = new PrintWriter(socket.getOutputStream(), true);
                     if (socket == nowSocket) {
-                        out.println("你：" + line);
+                        out.println("你:" + line);
                     } else {
                         out.println(line);
                     }
