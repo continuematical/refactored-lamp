@@ -6,6 +6,7 @@ import com.example.demo.basics.utils.IPInfoUtil;
 import com.example.demo.basics.utils.ResultUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,11 @@ public class SecurityController {
     @Operation(summary = "未登录返回的数据")
     public Result<Object> needLogin() {
         return ResultUtil.error(401, "登录失效");
+    }
+
+    @RequestMapping(value = "/ip/info", method = RequestMethod.GET)
+    @Operation(summary = "IP信息")
+    public Result<Object> upload(HttpServletRequest request) {
+        return ResultUtil.data(ipInfoUtil.getIPCity(request));
     }
 }

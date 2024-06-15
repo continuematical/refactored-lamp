@@ -1,11 +1,12 @@
 package com.example.demo.data.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.Data;
 
 import java.util.List;
 
 @Schema(name = "菜单VO类")
+@Data
 public class MenuVo {
     @Schema(name = "菜单标题")
     private String title;
