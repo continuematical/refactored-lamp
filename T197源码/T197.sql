@@ -50,10 +50,10 @@ INSERT INTO `dictionary` (`id`, `dic_code`, `dic_name`, `code_index`, `index_nam
 DROP TABLE IF EXISTS `supplier`;
 CREATE TABLE IF NOT EXISTS `supplier` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '主键 ',
-  `gongyingshang_name` varchar(200) DEFAULT NULL COMMENT '供应商名称  Search111 ',
-  `gongyingshang_types` int DEFAULT NULL COMMENT '供应商类型',
+  `name` varchar(200) DEFAULT NULL COMMENT '供应商名称  Search111 ',
+  `types` int DEFAULT NULL COMMENT '供应商类型',
   `gongyingshang_xinyongdengji_types` int DEFAULT NULL COMMENT '信用等级 Search111 ',
-  `gongyingshang_content` text COMMENT '供应商详情',
+  `content` text COMMENT '供应商详情',
   `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COMMENT='供应商信息';
