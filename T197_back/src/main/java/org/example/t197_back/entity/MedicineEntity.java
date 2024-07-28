@@ -24,6 +24,9 @@ public class MedicineEntity implements Serializable {
      */
     private int uuid_number;
 
+    /**
+     * 药品名称
+     */
     private String name;
 
     private String effect;
