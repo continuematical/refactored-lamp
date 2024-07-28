@@ -47,8 +47,8 @@ INSERT INTO `dictionary` (`id`, `dic_code`, `dic_name`, `code_index`, `index_nam
 	(10, 'gongyingshang_xinyongdengji_types', '供应商信用等级类型', 2, '二级', NULL, NULL, '2022-03-15 13:56:51'),
 	(11, 'gongyingshang_xinyongdengji_types', '供应商信用等级类型', 3, '三级', NULL, NULL, '2022-03-15 13:56:51');
 
-DROP TABLE IF EXISTS `gongyingshang`;
-CREATE TABLE IF NOT EXISTS `gongyingshang` (
+DROP TABLE IF EXISTS `supplier`;
+CREATE TABLE IF NOT EXISTS `supplier` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '主键 ',
   `gongyingshang_name` varchar(200) DEFAULT NULL COMMENT '供应商名称  Search111 ',
   `gongyingshang_types` int DEFAULT NULL COMMENT '供应商类型',
