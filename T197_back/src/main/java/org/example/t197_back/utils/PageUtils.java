@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 分页工具类
@@ -35,6 +36,13 @@ public class PageUtils implements Serializable {
         this.pageSize = page.getSize();
         this.currentPage = page.getCurrent();
         this.totalPages = page.getPages();
+    }
+
+    /*
+     * 空数据的分页
+     */
+    public PageUtils(Map<String, Object> params) {
+
     }
 
     public long getTotal() {
